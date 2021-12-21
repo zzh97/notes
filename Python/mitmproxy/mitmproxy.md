@@ -305,7 +305,7 @@ mitmdump -s mitmproxy.py -p 8888 -q
 
 然后去手机设置一下（要和电脑连同一个wifi）
 
-![](./images/22.jpg)
+<img src="./images/22.jpg" width = "50%" align=center />
 
 此时手机上登录http://mitm.it/，就能在电脑终端上看到请求了
 
@@ -313,7 +313,7 @@ mitmdump -s mitmproxy.py -p 8888 -q
 
 而此时手机浏览器上的页面是
 
-![](./images/24.jpg)
+<img src="./images/24.jpg" width = "50%" align=center />
 
 可以在里面下载相应的证书，这样就能抓https的包了
 
@@ -321,40 +321,42 @@ mitmdump -s mitmproxy.py -p 8888 -q
 
 #### 安装证书与问题
 
-![](./images/25.jpg)
+<img src="./images/25.jpg" width = "50%" align=center />
 
-![](./images/26.jpg)
+<img src="./images/26.jpg" width = "50%" align=center />
 
 发现bilibli还是打不开
 
-![](./images/27.jpg)
+<img src="./images/27.jpg" width = "50%" align=center />
 
 点击进个性装扮后，发现证书没通过
 
-![](./images/28.jpg)
+<img src="./images/28.jpg" width = "50%" align=center />
 
 把上述链接地址在浏览器打开后
 
-![](./images/29.jpg)
+<img src="./images/29.jpg" width = "50%" align=center />
 
 点击查看证书
 
-![](./images/30.jpg)
+<img src="./images/30.jpg" width = "50%" align=center />
 
 
 
 #### 卸载证书
 
-![](./images/31.jpg)
+<img src="./images/31.jpg" width = "50%" align=center />
 
-![](./images/32.jpg)
+<img src="./images/32.jpg" width = "50%" align=center />
 
-![](./images/33.jpg)
+<img src="./images/33.jpg" width = "50%" align=center />
 
-![](./images/34.jpg)
+<img src="./images/34.jpg" width = "50%" align=center />
 
-![](./images/35.jpg)
+<img src="./images/35.jpg" width = "50%" align=center />
 
-![](./images/36.jpg)
+<img src="./images/36.jpg" width = "50%" align=center />
 
-![](./images/37.jpg)
+<img src="./images/37.jpg" width = "50%" align=center />
+
+<img src="./images/37.jpg" style="width: 50%" />
