@@ -506,3 +506,162 @@ mitmdump -s mitmproxy.py -p 8888 -q
 对了，把模拟器关掉后，再次打开会提示这个，而且还有了锁屏（之前设置的）
 
 ![](./images/82.png)
+
+
+
+#### 配置系统证书
+
+在android7中，证书不被信任，于是...
+
+![](./images/83.png)
+
+哎没办法了，那就只能使用root大法了，好在模拟器都是自带root的
+
+不过，除了root，我们还需要修改证书权限，这个有点麻烦
+
+
+
+首先下载adb工具，Android Debug Bridge（安卓调试桥）
+
+链接：https://pan.baidu.com/s/1SKu24yyShwg16lyIupO5VA 提取码：ih0i
+
+```
+adb version
+```
+
+![](./images/84.png)
+
+```
+adb start-server
+```
+
+注：`adb kill-server`是停止服务
+
+
+
+```
+adb devices -l
+```
+
+注：offline —— 表示设备未连接成功或无响应；
+		device —— 设备已连接；
+		no device —— 没有设备/模拟器连接；
+		List of devices attached 设备/模拟器未连接到 adb 或无响应
+
+![](./images/85.png)
+
+发现没有设备显示，但是没有关系，我们可以主动出击
+
+```
+adb connect 127.0.0.1:21503
+```
+
+注：21503是逍遥的默认端口，夜神的是62001，雷电是5555
+
+![](./images/86.png)
+
+
+
+然后我们来装证书吧，在此之前，如果你已经安装了Mitmproxy的CA证书，可以先把它删了
+
+![](./images/87.png)
+
+![](./images/88.png)
+
+![](./images/89.png)
+
+![](./images/90.png)
+
+![](./images/91.png)
+
+![](./images/92.png)
+
+
+
+在mitmdump第一次运行会在用户目录生成对应的文件
+
+![](./images/93.png)
+
+
+
+先给adb.exe配置环境变量
+
+![](./images/94.png)
+
+
+
+这在.mitmproxy目录下运行cmd终端
+
+```
+ren mitmproxy-ca-cert.pem c8750f0d.0
+```
+
+![](./images/95.png)
+
+
+
+```
+adb push c8750f0d.0 /sdcard
+```
+
+![](./images/96.png)
+
+
+
+```
+adb shell
+```
+
+
+
+```shell
+su
+
+mount -o rw,remount /
+
+mv /sdcard/c8750f0d.0 /system/etc/security/cacerts
+
+chmod 644 /system/etc/security/cacerts/c8750f0d.0
+```
+
+注：mount命令是经常会使用到的命令，它用于挂载系统外的文件
+
+​		-o rw：用可读写模式挂上
+
+​		-o remount：将一个已经挂下的档案系统重新用不同的方式挂上。例如原先是唯读的系统，现在用可读写的模式重新挂上
+
+​		mv（move file）命令用来为文件或目录改名、或将文件或目录移入其它位置
+
+​		chmod（change mode）命令是控制用户对文件的权限的命令
+
+
+
+![](./images/97.png)
+
+
+
+但是，又失败了....
+
+来找找原因
+
+![](./images/98.png)
+
+
+
+再来一次
+
+```
+mount -o rw,remount /system
+
+mv /sdcard/c8750f0d.0 /system/etc/security/cacerts
+
+chmod 644 /system/etc/security/cacerts/c8750f0d.0
+```
+
+![](./images/99.png)
+
+
+
+此时再打开bilibili（注意模拟器和电脑的代理有没有开，mitmproxy有没有在运行）
+
+![](./images/100.png)
