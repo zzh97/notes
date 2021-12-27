@@ -95,7 +95,7 @@ git push origin test:master
 删除本地分支
 
 ```
-git push origin 分支名:
+git branch -d 分支名
 ```
 
 
